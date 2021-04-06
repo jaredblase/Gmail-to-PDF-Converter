@@ -48,8 +48,40 @@ SAVE_FOLDER = data['save-folder']
 
 JAR_PATH = data['jar-path']
 
+START_DATE = data['start-date']
+
+END_DATE = data['end-date']
+
 
 # In[3]:
+
+
+import datetime
+
+BEGINNING_OF_TIME = datetime.datetime(1970, 1, 1)
+
+def to_seconds(date):
+    y, m, d = map(int, date.split('/'))
+    
+    t = datetime.datetime(y, m, d)
+    
+    return str(int((t - BEGINNING_OF_TIME).total_seconds()))
+
+
+# In[5]:
+
+
+# create query string
+QUERY = ''
+
+if START_DATE != 'default':
+    QUERY += 'after:' + to_seconds(START_DATE)
+        
+if END_DATE != 'default':
+    QUERY += ' before:' + to_seconds(END_DATE)
+
+
+# In[6]:
 
 
 # Process dependent constants
@@ -129,7 +161,7 @@ print(label_id)
 # Get all relevant mails with the given label
 
 mails = []
-response = service.users().messages().list(userId=USER, includeSpamTrash=IN_TRASH, labelIds=label_id).execute()
+response = service.users().messages().list(userId=USER, includeSpamTrash=IN_TRASH, labelIds=label_id, q=QUERY).execute()
 
 # if there are mails in first page
 if 'messages' in response:

@@ -20,6 +20,8 @@ Instructions:
 			<li>"dir-name": The parent directory url where the pdfs will be saved. "default" uses the working directory of convert.bat.</li>
 			<li>"save-folder": The folder where the files will be saved.</li>
 			<li>"jar-path": The absolute path of the emailconverter.jar. "default" uses the working directory of convert.bat and looks for /src/emailconverter.jar.</li>
+			<li>"start-date": Date in the format "yyyy/mm/dd". Use "default" to indicate no start date requirements.</li>
+			<li>"end-date": Date in the format "yyyy/mm/dd". Use "default" to indicate no end date requirements. <strong>Note:</strong> this is exclusive, meaning setting January 6 as the end date will only include mails that were sent upto January 5 11:59 PM.</li>
 		</ul>
 	</li>
 	<br>
