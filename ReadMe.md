@@ -16,9 +16,9 @@ Instructions:
 			<li>"label-name": The set label of the emails to be printed from your gmail account.</li>
 			<li>"get-mail-in-trash": If mails in trash with the matching label should also be processed. "True"/"False"</li>
 			<li>"user": The email address to be used. For default user, just put "me" as the value.</li>
-			<li>"dir-name": The parent directory url where the pdfs will be saved.</li>
+			<li>"dir-name": The parent directory url where the pdfs will be saved. "default" uses the working directory of convert.bat.</li>
 			<li>"save-folder": The folder where the files will be saved.</li>
-			<li>"jar-path": The absolute path of the emailconverter.jar</li>
+			<li>"jar-path": The absolute path of the emailconverter.jar. "default" uses the working directory of convert.bat and looks for /src/emailconverter.jar.</li>
 		</ul>
 	</li>
 	<br>

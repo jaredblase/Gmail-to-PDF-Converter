@@ -2,7 +2,7 @@
     "label-name": "Help Desk Announcements",
     "get-mail-in-trash": "False",
     "user": "me",
-    "dir-name": "C:\\Users\\Jared\\Desktop\\Workspace\\Python\\Email to PDF Converter",
-    "save-folder": "\\HDA",
-    "jar-path": "C:\\Users\\Jared\\Desktop\\Workspace\\Python\\Email to PDF Converter\\emailconverter.jar"
+    "dir-name": "default",
+    "save-folder": "HDA",
+    "jar-path": "default",
 }
