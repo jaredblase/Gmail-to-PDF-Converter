@@ -56,6 +56,22 @@ END_DATE = data['end-date']
 # In[3]:
 
 
+# reset values that are set to default
+
+import os.path
+
+if DIR_NAME == 'default':
+    DIR_NAME = os.getcwd()
+
+os.chdir(os.path.join(os.getcwd(), 'src'))
+
+if JAR_PATH == 'default':
+    JAR_PATH = os.path.join(os.getcwd(), 'emailconverter.jar')
+
+
+# In[4]:
+
+
 import datetime
 
 BEGINNING_OF_TIME = datetime.datetime(1970, 1, 1)
@@ -86,7 +102,7 @@ if END_DATE != 'default':
 
 # Process dependent constants
 
-SAVE_FOLDER = DIR_NAME + SAVE_FOLDER
+SAVE_FOLDER = os.path.join(DIR_NAME, SAVE_FOLDER)
 CMD = f'java -jar "{JAR_PATH}"'
 
 
@@ -106,19 +122,18 @@ input('Press any key to proceed...')
 
 # <h3>Obtain Relevant Emails</h3>
 
-# In[4]:
+# In[8]:
 
 
 # Required libraries to connect with Google API
 
-import os.path
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 
 
-# In[5]:
+# In[9]:
 
 
 # Establish a connection to authenticated user
@@ -150,7 +165,7 @@ if not creds or not creds.valid:
 service = build('gmail', 'v1', credentials=creds)
 
 
-# In[6]:
+# In[10]:
 
 
 # Get the ID of the label of the emails to print
@@ -169,7 +184,7 @@ for label in labels:
 print(f'Label ID for {LABEL_NAME} found: {label_id}')
 
 
-# In[7]:
+# In[11]:
 
 
 # Get all relevant mails with the given label
@@ -194,7 +209,7 @@ print(f'Number of mails that matched the query: {len(mails)}')
 
 # <h3>Save Emails as PDF files</h3>
 
-# In[8]:
+# In[12]:
 
 
 # Importing required libraries
@@ -213,7 +228,7 @@ import string
 from datetime import datetime
 
 
-# In[25]:
+# In[13]:
 
 
 # Utility functions
@@ -283,7 +298,7 @@ Note: Project-specific code to process subject lines in DLSU's HDAs
 def setNames(subject):
     
     # [DEPT], Lorem Ipsum <- [DEPT] Lorem Ipsum
-    dept, subject = subject.split('] ', 1)
+    dept, subject = subject.split('] ')
     
     # DEPT <- [DEPT]
     foldername = valid_path_name(dept[1:])
@@ -294,7 +309,7 @@ def setNames(subject):
     return foldername, filename
 
 
-# In[10]:
+# In[14]:
 
 
 # Relocate working directory
@@ -303,7 +318,7 @@ os.chdir(DIR_NAME)
 print('Current working directory:', os.getcwd())
 
 
-# In[11]:
+# In[15]:
 
 
 # Create a folder in wrkdir if it does not exist yet
@@ -312,7 +327,7 @@ if not os.path.exists(SAVE_FOLDER):
     os.makedirs(SAVE_FOLDER)
 
 
-# In[29]:
+# In[16]:
 
 
 # Go through each mail and save them as .eml files first before converting to pdf
@@ -349,14 +364,14 @@ for mail in mails:
         #convert the raw format into a string format
         msg_str = base64.urlsafe_b64decode(raw['raw'].encode('ASCII')) 
         mime_msg = email.message_from_string(msg_str.decode())
-        
+
         emlfile = file_path + '.eml'
 
         # create and write file
         with open(emlfile, 'w') as outfile:
             gen = email.generator.Generator(outfile)
             gen.flatten(mime_msg)
-            
+
     except Exception as e:
         print(e)
         print("Error in message ", raw["snippet"])
@@ -365,10 +380,4 @@ for mail in mails:
     # convert .eml to pdf using emailconverter.jar and delete .eml file
     os.system(f'cmd /c {CMD} "{emlfile}"')
     os.remove(emlfile)
-
-
-# In[ ]:
-
-
-
 
