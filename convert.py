@@ -19,11 +19,16 @@
 #     <li><a href=https://github.com/MagTun/gmail-to-pdf>MagTun: gmail-to-pdf</a></li>
 # </ol>
 
-# <h3>Custom Variables</h3>
-# <p>Please set the following variable to your desired outputs</p>
+# In[1]:
+
+
+from __future__ import print_function
+
 
 # In[2]:
-from __future__ import print_function
+
+
+# Custom Variable read from config.json
 
 import json
 
@@ -59,7 +64,6 @@ CMD = f'java -jar "{JAR_PATH}"'
 
 # Required libraries to connect with Google API
 
-
 import os.path
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -67,7 +71,7 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 
 
-# In[ ]:
+# In[5]:
 
 
 # Establish a connection to authenticated user
@@ -99,7 +103,7 @@ if not creds or not creds.valid:
 service = build('gmail', 'v1', credentials=creds)
 
 
-# In[ ]:
+# In[6]:
 
 
 # Get the ID of the label of the emails to print
@@ -118,7 +122,7 @@ for label in labels:
 print(label_id)
 
 
-# In[ ]:
+# In[7]:
 
 
 # Get all relevant mails with the given label
@@ -143,7 +147,7 @@ print(len(mails))
 
 # <h3>Save Emails as PDF files</h3>
 
-# In[ ]:
+# In[8]:
 
 
 # Importing required libraries
@@ -162,7 +166,7 @@ import string
 from datetime import datetime
 
 
-# In[ ]:
+# In[25]:
 
 
 # Utility functions
@@ -230,12 +234,12 @@ Can be customized to liking.
 Note: Project-specific code to process subject lines in DLSU's HDAs
 """
 def setNames(subject):
-    
+    print(subject)
     # [DEPT], Lorem Ipsum <- [DEPT] Lorem Ipsum
-    dept, subject = subject.split(maxsplit=1)
+    dept, subject = subject.split('] ', 1)
     
     # DEPT <- [DEPT]
-    foldername = valid_path_name(dept[1:-1])
+    foldername = valid_path_name(dept[1:])
     
     # *date* Lorem Ipsum
     filename = valid_path_name(convert_date(valid_path_name(date)) + ' ' + subject)
@@ -243,7 +247,7 @@ def setNames(subject):
     return foldername, filename
 
 
-# In[ ]:
+# In[10]:
 
 
 # Relocate working directory
@@ -252,7 +256,7 @@ os.chdir(DIR_NAME)
 print('Current working directory:', os.getcwd())
 
 
-# In[ ]:
+# In[11]:
 
 
 # Create a folder in wrkdir if it does not exist yet
@@ -261,7 +265,7 @@ if not os.path.exists(SAVE_FOLDER):
     os.makedirs(SAVE_FOLDER)
 
 
-# In[ ]:
+# In[29]:
 
 
 # Go through each mail and save them as .eml files first before converting to pdf
@@ -314,4 +318,10 @@ for mail in mails:
     # convert .eml to pdf using emailconverter.jar and delete .eml file
     os.system(f'cmd /c {CMD} "{emlfile}"')
     os.remove(emlfile)
+
+
+# In[ ]:
+
+
+
 
