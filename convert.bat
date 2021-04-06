@@ -8,7 +8,8 @@ ECHO.
 
 python src/convert.py
 
-ECHO Conversion finished!
+ECHO.
+ECHO PROGRAM HAS FINISHED!
 ECHO.
 PAUSE
 
