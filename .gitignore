@@ -3,3 +3,4 @@ token.json
 /HDA
 *.ipynb
 /.ipynb_checkpoints
+anacondaconvert.bat
