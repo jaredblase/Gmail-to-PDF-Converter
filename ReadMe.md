@@ -3,7 +3,7 @@ This is dependent on Nick Russler's <a href='https://github.com/nickrussler/emai
 
 <b>Minimum Requirements:</b>
 <ul>
-	<li><a href='https://www.python.org/downloads/'>Python 3</a> to run the script</li>
+	<li><a href='https://www.python.org/downloads/'>Python 3 or above</a> to run the script</li>
 	<li><a href='https://www.oracle.com/ph/java/technologies/javase-downloads.html'>Java JDK 8 or above</a> for the script to run the .eml to .pdf converter</li>
 </ul>
 
@@ -32,4 +32,4 @@ Instructions:
 </ol>
 
 
-If there are any problems/suggested features, please contact me through jared_blase@gmail.com
+If there are any problems/suggested features, please contact me through jaredblase@gmail.com
