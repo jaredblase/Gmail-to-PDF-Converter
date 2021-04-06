@@ -3,8 +3,8 @@ This is dependent on Nick Russler's <a href='https://github.com/nickrussler/emai
 
 <b>Minimum Requirements:</b>
 <ul>
-	<li>Python 3 to run script</li>
-	<li>Java JDK 8 to run converter</li>
+	<li><a href='https://www.python.org/downloads/'>Python 3</a> to run the script</li>
+	<li><a href='https://www.oracle.com/ph/java/technologies/javase-downloads.html'>Java JDK 8 or above</a> for the script to run the .eml to .pdf converter</li>
 </ul>
 
 Instructions:
