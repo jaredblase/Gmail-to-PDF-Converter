@@ -90,6 +90,20 @@ SAVE_FOLDER = DIR_NAME + SAVE_FOLDER
 CMD = f'java -jar "{JAR_PATH}"'
 
 
+# In[7]:
+
+
+# Output constants for user to see
+
+print('Label name to print:\t\t\t', LABEL_NAME)
+print('Print mails found in trash:\t\t', IN_TRASH)
+print('Directory where files will be saved:\t', SAVE_FOLDER)
+print('Location of emailconverter.jar:\t\t', JAR_PATH)
+print()
+print('Please confirm if the details above are correct.')
+input('Press any key to proceed...')
+
+
 # <h3>Obtain Relevant Emails</h3>
 
 # In[4]:
@@ -152,7 +166,7 @@ for label in labels:
         label_id = label['id']
         break
 
-print(label_id)
+print(f'Label ID for {LABEL_NAME} found: {label_id}')
 
 
 # In[7]:
@@ -175,7 +189,7 @@ while 'nextPageToken' in response:
 
 # the number of emails with the given label found
 
-print(len(mails))
+print(f'Number of mails that matched the query: {len(mails)}')
 
 
 # <h3>Save Emails as PDF files</h3>
@@ -267,7 +281,7 @@ Can be customized to liking.
 Note: Project-specific code to process subject lines in DLSU's HDAs
 """
 def setNames(subject):
-    print(subject)
+    
     # [DEPT], Lorem Ipsum <- [DEPT] Lorem Ipsum
     dept, subject = subject.split('] ', 1)
     
