@@ -10,8 +10,9 @@
 #     
 # <h4>Dependencies</h4>
 # <ol>
-#     <li><a href=https://developers.google.com/gmail/api/quickstart/python>Gmail API</a></li>
-#     <li><a href=https://github.com/nickrussler/email-to-pdf-converter/releases/>nickrussler: email-to-pdf-converter</a></li>
+#     <li><a href='https://developers.google.com/gmail/api/quickstart/python'>Gmail API</a></li>
+#     <li><a href='https://github.com/nickrussler/email-to-pdf-converter/releases/'>nickrussler: email-to-pdf-converter</a></li>
+#     <li><a href='https://wkhtmltopdf.org/downloads.html'>wkhtmltopdf</a></li>
 # </ol>
 # 
 # <h4>References</h4>

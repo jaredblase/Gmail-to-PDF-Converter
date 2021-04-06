@@ -1,11 +1,12 @@
 A python 3 project that converts emails to pdfs.
-This is dependent on Nick Russler's <a href='https://github.com/nickrussler/email-to-pdf-converter'>Email to PDF Converter</a>.
+This is dependent on Nick Russler's <a href='https://github.com/nickrussler/email-to-pdf-converter'>Email to PDF Converter</a>. (jar file already included in the repo)
 
 <b>Minimum Requirements:</b>
 <ul>
 	<li><a href='https://www.python.org/downloads/'>Python 3 or above</a> to run the script</li>
 	<li><a href='https://developers.google.com/docs/api/quickstart/python'>The Gmail Python API</a> to connect with Gmail</li>
 	<li><a href='https://www.oracle.com/ph/java/technologies/javase-downloads.html'>Java JDK 8 or above</a> for the script to run the .eml to .pdf converter</li>
+	<li><a href='https://wkhtmltopdf.org/downloads.html'>wkhtmltopdf</a>, the C library to write pdf files</li>
 </ul>
 
 Instructions:
