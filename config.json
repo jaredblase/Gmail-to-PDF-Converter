@@ -4,9 +4,9 @@
     "to": "",
     "get-mail-in-trash": "False",
     "user": "me",
-    "dir-name": "default",
+    "dir-name": "",
     "save-folder": "HDA",
-    "jar-path": "default",
+    "jar-path": "",
     "start-date": "2021/04/06",
-    "end-date": "default"
+    "end-date": ""
 }

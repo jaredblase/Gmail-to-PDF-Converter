@@ -64,14 +64,16 @@ END_DATE = data['end-date']
 
 import os.path
 
-if DIR_NAME == 'default':
+if DIR_NAME == '':
     DIR_NAME = os.getcwd()
 
 os.chdir(os.path.join(os.getcwd(), 'src'))
 
-if JAR_PATH == 'default':
+if JAR_PATH == '':
     JAR_PATH = os.path.join(os.getcwd(), 'emailconverter.jar')
 
+
+# <h3>Forming the query string for the mails</h3>
 
 # In[4]:
 
@@ -94,10 +96,10 @@ def to_seconds(date):
 # create query string
 QUERY = ''
 
-if START_DATE != 'default':
+if START_DATE != '':
     QUERY += 'after:' + to_seconds(START_DATE)
         
-if END_DATE != 'default':
+if END_DATE != '':
     QUERY += ' before:' + to_seconds(END_DATE)
     
 if TO != '':
