@@ -108,6 +108,8 @@ if TO != '':
 if FROM != '':
     QUERY += ' from:' + FROM
     
+if LABEL_NAME != '':
+    QUERY += ' label:' + LABEL_NAME
 
 
 # In[6]:
@@ -124,7 +126,7 @@ CMD = f'java -jar "{JAR_PATH}"'
 
 # Output constants for user to see
 
-print('Label name to print:\t\t\t', LABEL_NAME)
+print('Search filter is\t\t\t', QUERY)
 print('Print mails found in trash:\t\t', IN_TRASH)
 print('Directory where files will be saved:\t', SAVE_FOLDER)
 print('Location of emailconverter.jar:\t\t', JAR_PATH)
@@ -133,7 +135,7 @@ print('Please confirm if the details above are correct.')
 input('Press any key to proceed...')
 
 
-# <h3>Obtain Relevant Emails</h3>
+# <h3>Establish Connection with Google</h3>
 
 # In[8]:
 
@@ -175,26 +177,16 @@ if not creds or not creds.valid:
     with open('token.json', 'w') as token:
         token.write(creds.to_json())
 
-service = build('gmail', 'v1', credentials=creds)
+gmail_service = build('gmail', 'v1', credentials=creds)
+print('Established connection with Gmail...\n')
 
 
 # In[10]:
 
 
-# Get the ID of the label of the emails to print
 
-# Get all labels from user
-results = service.users().labels().list(userId=USER).execute()
-labels = results.get('labels', [])
-label_id = None
 
-# Obtain desired label ID
-for label in labels:
-    if label['name'] == LABEL_NAME:
-        label_id = label['id']
-        break
 
-print(f'Label ID for {LABEL_NAME} found: {label_id}')
 
 
 # In[11]:
@@ -203,7 +195,7 @@ print(f'Label ID for {LABEL_NAME} found: {label_id}')
 # Get all relevant mails with the given label
 
 mails = []
-response = service.users().messages().list(userId=USER, includeSpamTrash=IN_TRASH, labelIds=label_id, q=QUERY).execute()
+response = gmail_service.users().messages().list(userId=USER, includeSpamTrash=IN_TRASH, q=QUERY).execute()
 
 # if there are mails in first page
 if 'messages' in response:
@@ -212,7 +204,7 @@ if 'messages' in response:
 # if there are remaining pages to go through, a page only contains 20 emails
 while 'nextPageToken' in response:
     token = response['nextPageToken']
-    response = service.users().messages().list(userId=USER, includeSpamTrash=IN_TRASH, labelIds=label_id, pageToken=token).execute()
+    response = gmail_service.users().messages().list(userId=USER, includeSpamTrash=IN_TRASH, pageToken=token, q=QUERY).execute()
     mails.extend(response['messages'])
 
 # the number of emails with the given label found
@@ -348,7 +340,7 @@ if not os.path.exists(SAVE_FOLDER):
 for mail in mails:
     
     # get date and subject from mail headers
-    headers = service.users().messages().get(userId=USER, id=mail['id'], format='full').execute()['payload']['headers']
+    headers = gmail_service.users().messages().get(userId=USER, id=mail['id'], format='full').execute()['payload']['headers']
     date, subject = extract_header_info(headers)
     
     
@@ -371,7 +363,7 @@ for mail in mails:
     
     
     # get entire mail body in RFC 2822 format
-    raw = service.users().messages().get(userId=USER, id=mail['id'], format='raw').execute()
+    raw = gmail_service.users().messages().get(userId=USER, id=mail['id'], format='raw').execute()
 
     try:
         #convert the raw format into a string format
