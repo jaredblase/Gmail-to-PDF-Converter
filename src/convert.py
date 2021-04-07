@@ -38,6 +38,10 @@ with open('config.json') as f:
 
 LABEL_NAME = data['label-name']
 
+FROM = data['from']
+
+TO = data['to']
+
 IN_TRASH = data['get-mail-in-trash'] == 'True'
 
 USER = data['user']
@@ -95,6 +99,13 @@ if START_DATE != 'default':
         
 if END_DATE != 'default':
     QUERY += ' before:' + to_seconds(END_DATE)
+    
+if TO != '':
+    QUERY += ' to:' + TO
+    
+if FROM != '':
+    QUERY += ' from:' + FROM
+    
 
 
 # In[6]:

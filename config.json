@@ -1,5 +1,7 @@
 {
     "label-name": "Help Desk Announcements",
+    "from": "announcement@dlsu.edu.ph",
+    "to": "",
     "get-mail-in-trash": "False",
     "user": "me",
     "dir-name": "default",
