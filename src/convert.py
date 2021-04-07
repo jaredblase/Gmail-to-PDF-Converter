@@ -56,6 +56,8 @@ START_DATE = data['start-date']
 
 END_DATE = data['end-date']
 
+DRIVE_NAME = 'HDA'
+
 
 # In[3]:
 
@@ -154,7 +156,7 @@ from google.oauth2.credentials import Credentials
 # Establish a connection to authenticated user
 
 # If modifying these scopes, delete the file token.json.
-SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
+SCOPES = ['https://www.googleapis.com/auth/gmail.readonly', 'https://www.googleapis.com/auth/drive']
 
 creds = None
 
@@ -180,16 +182,35 @@ if not creds or not creds.valid:
 gmail_service = build('gmail', 'v1', credentials=creds)
 print('Established connection with Gmail...\n')
 
+drive_service = build('drive', 'v3', credentials=creds)
+print('Established connection with GDrive...\n')
+
 
 # In[10]:
 
 
+drive_id = None
+response = drive_service.drives().list().execute()
+
+# if there are drives in first page
+if 'drives' in response:
+    for drive in response['drives']:
+        if drive['name'] == DRIVE_NAME :
+            drive_id = drive['id']
+            break
+
+while not drive_id and 'nextPageToken' in response:
+    token = response['nextPageToken']
+    response = drive_service.users().messages().list(pageToken=token).execute()
+    for drive in response['drives']:
+        if drive['name'] == DRIVE_NAME :
+            drive_id = drive['id']
+            break
+
+print(f'Drive ID for "{DRIVE_NAME}" found: {drive_id}')
 
 
-
-
-
-# In[11]:
+# In[12]:
 
 
 # Get all relevant mails with the given label
@@ -214,7 +235,7 @@ print(f'Number of mails that matched the query: {len(mails)}')
 
 # <h3>Save Emails as PDF files</h3>
 
-# In[12]:
+# In[13]:
 
 
 # Importing required libraries
@@ -233,7 +254,7 @@ import string
 from datetime import datetime
 
 
-# In[13]:
+# In[14]:
 
 
 # Utility functions
@@ -314,7 +335,7 @@ def setNames(subject):
     return foldername, filename
 
 
-# In[14]:
+# In[15]:
 
 
 # Relocate working directory
@@ -323,7 +344,7 @@ os.chdir(DIR_NAME)
 print('Current working directory:', os.getcwd())
 
 
-# In[15]:
+# In[16]:
 
 
 # Create a folder in wrkdir if it does not exist yet
@@ -332,7 +353,7 @@ if not os.path.exists(SAVE_FOLDER):
     os.makedirs(SAVE_FOLDER)
 
 
-# In[16]:
+# In[17]:
 
 
 # Go through each mail and save them as .eml files first before converting to pdf
