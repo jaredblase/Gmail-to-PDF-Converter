@@ -3,7 +3,7 @@ This is dependent on Nick Russler's <a href='https://github.com/nickrussler/emai
 
 <b>Script Requirements:</b>
 <ul>
-	<li><a href='https://www.python.org/downloads/'>Python 3 or above. Please tick the "add to PATH" option during installation.</a>/li>
+	<li><a href='https://www.python.org/downloads/'>Python 3 or above.</a>. Please tick the "add to PATH" option during installation.</li>
 	<li><a href='https://developers.google.com/docs/api/quickstart/python'>The Google Python API</a> to connect with Google services.</li>
 	<li><a href='https://www.oracle.com/ph/java/technologies/javase-downloads.html'>Java JDK 8 or above</a> for the script to run the .eml to .pdf converter</li>
 	<li><a href='https://wkhtmltopdf.org/downloads.html'>wkhtmltopdf</a> to write PDF files. Please add the /bin directory to your environment paths.</li>
