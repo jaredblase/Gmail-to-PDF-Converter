@@ -1,18 +1,18 @@
 A python 3 project that converts emails to pdfs.
-This is dependent on Nick Russler's <a href='https://github.com/nickrussler/email-to-pdf-converter'>Email to PDF Converter</a>. (jar file already included in the repo)
+This is dependent on Nick Russler's <a href='https://github.com/nickrussler/email-to-pdf-converter'>Email to PDF Converter</a>. (The .jar file is already included in this repo)
 
-<b>Minimum Requirements:</b>
+<b>Script Requirements:</b>
 <ul>
-	<li><a href='https://www.python.org/downloads/'>Python 3 or above</a> to run the script</li>
-	<li><a href='https://developers.google.com/docs/api/quickstart/python'>The Gmail Python API</a> to connect with Gmail</li>
+	<li><a href='https://www.python.org/downloads/'>Python 3 or above. Please tick the "add to PATH" option during installation.</a>/li>
+	<li><a href='https://developers.google.com/docs/api/quickstart/python'>The Google Python API</a> to connect with Google services.</li>
 	<li><a href='https://www.oracle.com/ph/java/technologies/javase-downloads.html'>Java JDK 8 or above</a> for the script to run the .eml to .pdf converter</li>
-	<li><a href='https://wkhtmltopdf.org/downloads.html'>wkhtmltopdf</a>, the C library to write pdf files</li>
+	<li><a href='https://wkhtmltopdf.org/downloads.html'>wkhtmltopdf</a> to write PDF files. Please add the /bin directory to your environment paths.</li>
 </ul>
 
 Instructions:
 <ol>
 	<li>
-		Setup config.json. Please enlose all values in double quotation marks. For Windows PCs, please use double backslashes ("\\") for the directory addresses.
+		After installing the requirements, setup config.json. Please enlose all values in double quotation marks. For Windows PCs, please use double backslashes ("\\") for the directory addresses. Below are the following fields:
 		<ul>
 			<li>"label-name": The set label of the emails to be printed from your gmail account.</li>
 			<li>"from": The sender of the emails to be printed. Leave blank to ignore this filter.</li>
@@ -28,12 +28,12 @@ Instructions:
 	</li>
 	<br>
 	<li>
-		After setting the config, you may now run the "convert.py" script. If you have python installed, then just fire up the command line in the directory and type in "python convert.py". If you have anaconda, you have to use the anaconda prompt and navigate to the directory first before typing the command.
+		After setting the config, just double click the "convert.bat", and it will automatically run the script for you.
 	</li>
 	<br>
 	<li>
-		If it is the first time running, google will ask you to sign in. Please sign in to your account that have the emails to processed.
-	   	A token.json will be created so that you will not have to log in next time.
+		If it is the first time running, google will ask you to sign in. Please sign in to your account that have the emails to be processed.
+	   	A token.json will be created so that you will not have to log in the next time.
 	</li>
 </ol>
 
