@@ -3,16 +3,23 @@ This is dependent on Nick Russler's <a href='https://github.com/nickrussler/emai
 
 <b>Script Requirements:</b>
 <ul>
-	<li><a href='https://www.python.org/downloads/'>Python 3 or above.</a>. Please tick the "add to PATH" option during installation.</li>
+	<li><a href='https://www.python.org/downloads/'>Python 3 or above</a>. Please tick the "add to PATH" option during installation. To check if you already have python installed or to verify the installation, type in **python --version** in your command line.</li>
+	<li><a href='https://www.oracle.com/ph/java/technologies/javase-downloads.html'>JRE 8 or above</a> for the script to run the .eml to .pdf converter. To check if you already have a JRE installed or to verify the installation, type in **java --version** in your command line.</li> 
 	<li><a href='https://developers.google.com/docs/api/quickstart/python'>The Google Python API</a> to connect with Google services.</li>
-	<li><a href='https://www.oracle.com/ph/java/technologies/javase-downloads.html'>Java JDK 8 or above</a> for the script to run the .eml to .pdf converter</li>
-	<li><a href='https://wkhtmltopdf.org/downloads.html'>wkhtmltopdf</a> to write PDF files. Please add the /bin directory to your environment paths.</li>
-</ul>
+	<li><a href='https://wkhtmltopdf.org/downloads.html'>wkhtmltopdf</a> to write PDF files. Please add the /wkhtmltopdf/bin directory to your environment paths.
+		<ol>
+			<li>To do this, just open your windows search bar, type in **environment**</li>
+			<li>Press the **Edit the system environment variables**</li>
+			<li>A prompt titled **System Properties** should appear, then click on **Envionment Variables**</li>
+			<li>Under your user variables, look for the **Path** variable and double click on it</li>
+			<li>Add the directory of your /wkhtmltopdf/bin folder</li>
+		</ol>
+	</li>
 
 Instructions:
 <ol>
 	<li>
-		After installing the requirements, setup config.json. Please enlose all values in double quotation marks. For Windows PCs, please use double backslashes ("\\") for the directory addresses. Below are the following fields:
+		After completing the requirements above, setup config.json. Please enlose all values in double quotation marks. For Windows PCs, please use double backslashes ("\\") for the directory addresses. Below are the following fields along with their meaning:
 		<ul>
 			<li>"label-name": The set label of the emails to be printed from your gmail account.</li>
 			<li>"from": The sender of the emails to be printed. Leave blank to ignore this filter.</li>
