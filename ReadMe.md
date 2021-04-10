@@ -15,8 +15,9 @@ This is dependent on Nick Russler's <a href='https://github.com/nickrussler/emai
 			<li>Add the directory of your /wkhtmltopdf/bin folder</li>
 		</ol>
 	</li>
-
-Instructions:
+</ul>
+<br>
+<strong>Instructions:</strong>
 <ol>
 	<li>
 		After completing the requirements above, setup config.json. Please enlose all values in double quotation marks. For Windows PCs, please use double backslashes ("\\") for the directory addresses. Below are the following fields along with their meaning:
